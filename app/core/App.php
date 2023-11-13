@@ -14,9 +14,9 @@ class App {
     public static function getUrl(){
         $publicUrl = trim($_SERVER['REQUEST_URI'], '/') ?? null;
         $publicUrl = explode('/', $publicUrl);
-        self::$game = isset($publicUrl[3]) ? $publicUrl[3] : "game";
-        self::$action = isset($publicUrl[4]) ? $publicUrl[4] : "index";
-        self::$params = [!empty($publicUrl[5]) ? $publicUrl[5] : null];
+        self::$game = isset($publicUrl[2]) ? $publicUrl[2] : "post";
+        self::$action = isset($publicUrl[3]) ? $publicUrl[3] : "index";
+        self::$params = [!empty($publicUrl[4]) ? $publicUrl[4] : null];
     }
 
     public static function controllerExists() {

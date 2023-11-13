@@ -3,10 +3,10 @@
 class Database {
     private static $pdo;
 
-    public function openConnection() : Mixed {
+    public static function openConnection(String $databaseName) : Mixed {
         try {
             self::$pdo = new PDO(
-                Config::getBase(), 
+                Config::getBase($databaseName), 
                 Config::getUser(), 
                 Config::getPass()
             );
@@ -17,7 +17,7 @@ class Database {
         }
     }
 
-    public function closeConnection() {
+    public static function closeConnection() {
         self::$pdo = null;
     }
 }
