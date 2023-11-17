@@ -1,0 +1,5 @@
+{
+    "require": {
+        "brenno-duarte/modern-php-exception": "^2.2"
+    }
+}

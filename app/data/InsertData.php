@@ -1,22 +1,22 @@
 <?php 
 
-class Executor {
+class InsertData {
     public static function render (Array $drawNumber) : Mixed {
         return [
             'all5' => [
-                'g120'      => Utils::findPattern([1,1,1,1,1], $drawNumber, 0, 5) ? "g120" : 1, // no repeat
-                'g60'       => Utils::findPattern([2,1,1,1], $drawNumber, 0, 5) ? "g60"   : 1, // 1 pair, 3 diff
-                'g30'       => Utils::findPattern([2,2,1], $drawNumber, 0, 5) ? "g30"   : 1, // 2 pair, 1 diff
-                'g20'       => Utils::findPattern([3,1,1], $drawNumber, 0, 5) ? "g20" : 1, // 1 triple, 2 diff
-                'g10'       => Utils::findPattern([3,2], $drawNumber, 0, 5) ? "g10" : 1, // 1 triple, 1 pair
-                'g5'        => Utils::findPattern([4,1], $drawNumber, 0, 5) ? "g5" : 1  // 1 quad, 1 diff
+                'g120' => Utils::findPattern([1,1,1,1,1], $drawNumber, 0, 5) ? "g120" : 1, // no repeat
+                'g60' => Utils::findPattern([2,1,1,1], $drawNumber, 0, 5) ? "g60"   : 1, // 1 pair, 3 diff
+                'g30' => Utils::findPattern([2,2,1], $drawNumber, 0, 5) ? "g30"   : 1, // 2 pair, 1 diff
+                'g20' => Utils::findPattern([3,1,1], $drawNumber, 0, 5) ? "g20" : 1, // 1 triple, 2 diff
+                'g10' => Utils::findPattern([3,2], $drawNumber, 0, 5) ? "g10" : 1, // 1 triple, 1 pair
+                'g5' => Utils::findPattern([4,1], $drawNumber, 0, 5) ? "g5" : 1  // 1 quad, 1 diff
             ],
             'all4' => [
                'first4' => [
-                'group24'   => Utils::findPattern([1,1,1,1], $drawNumber, 0, 4) ? "group24" : 1, // no repeat
-                'group12'   => Utils::findPattern([2,1,1], $drawNumber, 0, 4) ? "group12" : 1, // 1 pair, 2 diff
-                'group6'    => Utils::findPattern([2,2], $drawNumber, 0, 4) ? "group6" :   1, // 2 pair
-                'group4'    => Utils::findPattern([3,1], $drawNumber, 0, 4) ? "group4" : 1  // 1 triple, 1 diff
+                'group24' => Utils::findPattern([1,1,1,1], $drawNumber, 0, 4) ? "group24" : 1, // no repeat
+                'group12' => Utils::findPattern([2,1,1], $drawNumber, 0, 4) ? "group12" : 1, // 1 pair, 2 diff
+                'group6' => Utils::findPattern([2,2], $drawNumber, 0, 4) ? "group6" :   1, // 2 pair
+                'group4' => Utils::findPattern([3,1], $drawNumber, 0, 4) ? "group4" : 1  // 1 triple, 1 diff
                ],
                'last4' => [
                 'group24' => Utils::findPattern([1,1,1,1], $drawNumber, -4, 4) ? "group24" : 1, // no repeat
@@ -79,8 +79,16 @@ class Executor {
                 ]
             ],
             'bsoe' => [
-                'firstBsoe' => Utils::bigSmallOddEvenPattern($drawNumber, 2, 0) ?? "", // bis|small|odd|even [0]
-                'secondBsoe' => Utils::bigSmallOddEvenPattern($drawNumber, 2, 1) ?? "", // bis|small|odd|even [1]
+                'first2' => Utils::bigSmallOddEvenPattern($drawNumber, 0, 2,  0, 1) ?? "", // bis|small|odd|even 
+                'last2' => Utils::bigSmallOddEvenPattern($drawNumber, -2, 2, 0,1) ?? "", // bis|small|odd|even 
+                'first3' => Utils::bigSmallOddEvenPattern3($drawNumber, 0, 3, 0, 1, 2) ?? "", // bis|small|odd|even 
+                'last3' => Utils::bigSmallOddEvenPattern3($drawNumber, -3, 3, 0, 1, 2) ?? "", // bis|small|odd|even
+                'sumall3' => [
+                    'first3' => Utils::SumAndFindPattern($drawNumber, 0, 3, [14,13]) ?? "", // sum first 3
+                    'mid3' => Utils::SumAndFindPattern($drawNumber, 1, 3, [14,13]) ?? "", // sum mid 3
+                    'last3' => Utils::SumAndFindPattern($drawNumber, -3, 3, [14,13]) ?? "", // sum last 3
+                ],
+                'sumall5' => Utils::SumAndFindPattern1($drawNumber, 0, 5, [23,22]) ?? "", // sum first 5
             ],
             'stud' => [
                 'highcard' => Utils::findPattern([1,1,1,1,1], $drawNumber, 0, 5) && Utils::findStreakPattern($drawNumber, 0, 5, 4) == false  ? "High Card" : 1, // high card [0]
@@ -103,6 +111,32 @@ class Executor {
                 '3x5' =>  Utils::dragonTigerTiePattern(2, 4, $drawNumber), // tiger [5]
                 '4x5' =>  Utils::dragonTigerTiePattern(3, 4, $drawNumber) // tiger [5]
             ],
+
+            'twosides' => [
+                'sum' => Utils::SumAndFindPattern1($drawNumber, 0, 5, [23,22]) ?? "", // sum first 5
+                'dragontigertie' => Utils::dragonTigerTiePattern(0, 4, $drawNumber), // dragon [0]
+                'first3' => [
+                    'toak' => Utils::findPattern([3], $drawNumber, 0, 3) ? "Toak" : "", // 3 of a kind
+                    'streak' => Utils::findStreakPattern($drawNumber, 0, 3, 4) ? "Streak" : "", // stud streak 4
+                    'pair' => Utils::findPattern([2,1], $drawNumber, 0, 3) ? "Pair" : "", // 2 of a kind
+                    'mixed' => Utils::findPattern([1,1,1], $drawNumber, 0, 3) ? "Mixed" : "", // 3 diff
+                    'halfStreak' => Utils::findStreakPattern($drawNumber, 0, 3, 3) ? "Half Streak" : "", // stud half streak 3
+                ],
+                'mid3' => [
+                    'toak' => Utils::findPattern([3], $drawNumber, 1, 3) ? "Toak" : "", // 3 of a kind
+                    'streak' => Utils::findStreakPattern($drawNumber, 1, 3, 4) ? "Streak" : "", // stud streak 4
+                    'pair' => Utils::findPattern([2,1], $drawNumber, 1, 3) ? "Pair" : "", // 2 of a kind
+                    'mixed' => Utils::findPattern([1,1,1], $drawNumber, 1, 3) ? "Mixed" : "", // 3 diff
+                    'halfStreak' => Utils::findStreakPattern($drawNumber, 1, 3, 3) ? "Half Streak" : "", // stud half streak 3
+                ],
+                'last3' => [
+                    'toak' => Utils::findPattern([3], $drawNumber, -3, 3) ? "Toak" : "", // 3 of a kind
+                    'streak' => Utils::findStreakPattern($drawNumber, -3, 3, 4) ? "Streak" : "", // stud streak 4
+                    'pair' => Utils::findPattern([2,1], $drawNumber, -3, 3) ? "Pair" : "", // 2 of a kind
+                    'mixed' => Utils::findPattern([1,1,1], $drawNumber, -3, 3) ? "Mixed" : "", // 3 diff
+                    'halfStreak' => Utils::findStreakPattern($drawNumber, -3, 3, 3) ? "Half Streak" : "", // stud half streak 3
+                ]
+            ]
         ];
     }
 }

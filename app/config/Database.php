@@ -1,11 +1,9 @@
 <?php 
-
 class Database {
     private static $pdo;
-
     public static function openConnection(String $databaseName) : Mixed {
         try {
-            self::$pdo = new PDO(
+            self::$pdo = new PDO (
                 Config::getBase($databaseName), 
                 Config::getUser(), 
                 Config::getPass()

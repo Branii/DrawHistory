@@ -9,7 +9,6 @@ class Threecard {
     public function Streak(Array $drawNumber, Int $slice, Int $streakCount) : Bool {
         return Utils::findStreakPattern($drawNumber, 0, $slice, $streakCount); // stud streak 4
     }
-
     public function Pair(Array $drawNumber, Int $slice) : Bool {
         return Utils::findPattern([2,1], $drawNumber, 0, $slice); // 2 of a kind
     }

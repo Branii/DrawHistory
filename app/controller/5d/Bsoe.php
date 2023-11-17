@@ -3,11 +3,11 @@
 class Bsoe {
 
     public function firstBsoe(Array $drawNumber, Int $index) : String {
-        return Utils::bigSmallOddEvenPattern($drawNumber, 2, $index); // bis|small|odd|even [0]
+        return "";
     }
 
     public function secondBsoe(Array $drawNumber, Int $index) : String {
-        return Utils::bigSmallOddEvenPattern($drawNumber, 2,  $index); // bis|small|odd|even [1]
+        return "";
     }
 
 }
