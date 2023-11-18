@@ -1,9 +1,6 @@
 {
     "name": "nii/kush-php",
     "version": "1.0.0",
-    "require": {
-        "brenno-duarte/modern-php-exception": "^2.2",
-    },
     "repositories": [
         {
             "type": "vcs",
