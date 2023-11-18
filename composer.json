@@ -1,5 +1,15 @@
 {
+    "name": "nii/kush-php",
+    "version": "1.0.0",
     "require": {
-        "brenno-duarte/modern-php-exception": "^2.2"
-    }
+        "brenno-duarte/modern-php-exception": "^2.2",
+        "acme/hello-world": "dev-master"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/branii/DrawHistory"
+        }
+    ]
+    
 }
