@@ -61,21 +61,21 @@ class InsertData {
                     'streak' => Utils::findStreakPattern($drawNumber, 0, 3, 4) ? "Streak" : "", // stud streak 4
                     'pair' => Utils::findPattern([2,1], $drawNumber, 0, 3) ? "Pair" : "", // 2 of a kind
                     'mixed' => Utils::findPattern([1,1,1], $drawNumber, 0, 3) ? "Mixed" : "", // 3 diff
-                    'halfStreak' => Utils::findStreakPattern($drawNumber, 0, 3, 3) ? "Half Streak" : "", // stud half streak 3
+                    'halfStreak' => Utils::findStreakPattern($drawNumber, 0, 3, 2) ? "Half Streak" : "", // stud half streak 3
                 ],
                 'mid3' => [
                     'toak' => Utils::findPattern([3], $drawNumber, 1, 3) ? "Toak" : "", // 3 of a kind
                     'streak' => Utils::findStreakPattern($drawNumber, 1, 3, 4) ? "Streak" : "", // stud streak 4
                     'pair' => Utils::findPattern([2,1], $drawNumber, 1, 3) ? "Pair" : "", // 2 of a kind
                     'mixed' => Utils::findPattern([1,1,1], $drawNumber, 1, 3) ? "Mixed" : "", // 3 diff
-                    'halfStreak' => Utils::findStreakPattern($drawNumber, 1, 3, 3) ? "Half Streak" : "", // stud half streak 3
+                    'halfStreak' => Utils::findStreakPattern($drawNumber, 1, 3, 2) ? "Half Streak" : "", // stud half streak 3
                 ],
                 'last3' => [
                     'toak' => Utils::findPattern([3], $drawNumber, -3, 3) ? "Toak" : "", // 3 of a kind
                     'streak' => Utils::findStreakPattern($drawNumber, -3, 3, 4) ? "Streak" : "", // stud streak 4
                     'pair' => Utils::findPattern([2,1], $drawNumber, -3, 3) ? "Pair" : "", // 2 of a kind
                     'mixed' => Utils::findPattern([1,1,1], $drawNumber, -3, 3) ? "Mixed" : "", // 3 diff
-                    'halfStreak' => Utils::findStreakPattern($drawNumber, -3, 3, 3) ? "Half Streak" : "", // stud half streak 3
+                    'halfStreak' => Utils::findStreakPattern($drawNumber, -3, 3, 2) ? "Half Streak" : "", // stud half streak 3
                 ]
             ],
             'bsoe' => [
@@ -117,24 +117,24 @@ class InsertData {
                 'dragontigertie' => Utils::dragonTigerTiePattern(0, 4, $drawNumber), // dragon [0]
                 'first3' => [
                     'toak' => Utils::findPattern([3], $drawNumber, 0, 3) ? "Toak" : "", // 3 of a kind
-                    'streak' => Utils::findStreakPattern($drawNumber, 0, 3, 4) ? "Streak" : "", // stud streak 4
+                    'streak' => Utils::findStreakPattern($drawNumber, 0, 3, 2) ? "Streak" : "", // stud streak 4
                     'pair' => Utils::findPattern([2,1], $drawNumber, 0, 3) ? "Pair" : "", // 2 of a kind
-                    'mixed' => Utils::findPattern([1,1,1], $drawNumber, 0, 3) ? "Mixed" : "", // 3 diff
-                    'halfStreak' => Utils::findStreakPattern($drawNumber, 0, 3, 3) ? "Half Streak" : "", // stud half streak 3
+                    'mixed' => Utils::findPattern([1,1,1], $drawNumber, 0, 3) && !Utils::findStreakPattern($drawNumber, 0, 3, 1) ? "Mixed" : "", // 3 diff
+                    'halfStreak' => Utils::findStreakPattern($drawNumber, 0, 3, 1) ? "Half Streak" : "", // stud half streak 3
                 ],
                 'mid3' => [
                     'toak' => Utils::findPattern([3], $drawNumber, 1, 3) ? "Toak" : "", // 3 of a kind
-                    'streak' => Utils::findStreakPattern($drawNumber, 1, 3, 4) ? "Streak" : "", // stud streak 4
+                    'streak' => Utils::findStreakPattern($drawNumber, 1, 3, 2) ? "Streak" : "", // stud streak 4
                     'pair' => Utils::findPattern([2,1], $drawNumber, 1, 3) ? "Pair" : "", // 2 of a kind
-                    'mixed' => Utils::findPattern([1,1,1], $drawNumber, 1, 3) ? "Mixed" : "", // 3 diff
-                    'halfStreak' => Utils::findStreakPattern($drawNumber, 1, 3, 3) ? "Half Streak" : "", // stud half streak 3
+                    'mixed' => Utils::findPattern([1,1,1], $drawNumber, 1, 3) && !Utils::findStreakPattern($drawNumber, 1, 3, 1) ? "Mixed" : "", // 3 diff
+                    'halfStreak' => Utils::findStreakPattern($drawNumber, 1, 3, 1) ? "Half Streak" : "", // stud half streak 3
                 ],
                 'last3' => [
                     'toak' => Utils::findPattern([3], $drawNumber, -3, 3) ? "Toak" : "", // 3 of a kind
-                    'streak' => Utils::findStreakPattern($drawNumber, -3, 3, 4) ? "Streak" : "", // stud streak 4
+                    'streak' => Utils::findStreakPattern($drawNumber, -3, 3, 2) ? "Streak" : "", // stud streak 4
                     'pair' => Utils::findPattern([2,1], $drawNumber, -3, 3) ? "Pair" : "", // 2 of a kind
-                    'mixed' => Utils::findPattern([1,1,1], $drawNumber, -3, 3) ? "Mixed" : "", // 3 diff
-                    'halfStreak' => Utils::findStreakPattern($drawNumber, -3, 3, 3) ? "Half Streak" : "", // stud half streak 3
+                    'mixed' => Utils::findPattern([1,1,1], $drawNumber, -3, 3) && !Utils::findStreakPattern($drawNumber, -3, 3, 1) ? "Mixed" : "", // 3 diff
+                    'halfStreak' => Utils::findStreakPattern($drawNumber, -3, 3, 1) ? "Half Streak" : "", // stud half streak 3
                 ]
             ]
         ];

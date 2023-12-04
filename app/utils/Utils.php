@@ -108,7 +108,7 @@ class Utils {
     }
 
     public static function getTodaysDate() : String { // get todays date
-        return date("Y-m-d H:i:s");
+        return date("Y-m-d");
     }
 
     public static function getWinner(Array $array) { // get winnter
@@ -149,7 +149,7 @@ class Utils {
         return json_encode([
             "code"=> 200, 
             "message"=>"History updated",
-            "date_created"=> Utils::getTodaysDate(),
+            "date_created" => date("Y-m-d H:i:s"),
             "drawNumber"=> $params]);
 
     }

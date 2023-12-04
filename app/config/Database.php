@@ -1,7 +1,7 @@
 <?php 
 class Database {
     private static $pdo;
-    public static function openConnection(String $databaseName) : Mixed {
+    public static function openConnection(String $databaseName) : PDO | STRING {
         try {
             self::$pdo = new PDO (
                 Config::getBase($databaseName), 
